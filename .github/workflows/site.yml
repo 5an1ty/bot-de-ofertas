@@ -22,8 +22,8 @@ jobs:
       - name: Verificar APK
         working-directory: download
         run: |
-          test -s radar-0.1.0-test.apk
-          unzip -t radar-0.1.0-test.zip
+          test -s radar-0.2.0-test.apk
+          unzip -t radar-0.2.0-test.zip
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

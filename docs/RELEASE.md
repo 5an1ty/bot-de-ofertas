@@ -1,7 +1,8 @@
-Versão experimental, assinada para teste. Android 8.0+.
+Radar 0.2.0 — versão de teste para Android 8.0+.
 
-Operacional no código: cadastros locais de produtos, pausa/reativação, fontes cadastradas, importação/exportação JSON, compartilhamento manual de texto e verificação HTTPS do backend.
+- Tema roxo e escuro, formulário reorganizado e filtros avançados recolhíveis.
+- Campo “Até X reais” com explicação da tolerância adicional.
+- Reconhecimento de cinco lojas pelo nome.
+- Verificar agora: consulta HTTPS no aparelho para todos os produtos/fontes ativos; relatório individual persistente.
 
-Não implementado: descoberta real de ofertas, conectores operacionais, sincronização de cadastros com backend, notificações, histórico de preços, deduplicação de alertas e leitura automática de WhatsApp. Não há monitoramento remoto ativo. Não confundir esta versão com o produto completo solicitado.
-
-A compilação não equivale a validação em aparelho. Consulte README para testes e limitações.
+Limitações: páginas podem bloquear a consulta ou não ter dados estruturados. Candidatos não são ofertas confirmadas; preços e estoque não são validados. Sem monitoramento contínuo, notificações ou leitura automática de WhatsApp. Sem teste instrumentado em aparelho. Três testes JVM passaram e APK compilou localmente.

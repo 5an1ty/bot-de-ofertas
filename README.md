@@ -39,3 +39,11 @@ A chave de debug do runner não é uma identidade de distribuição estável. As
 - `assembleDebug` concluído localmente; assinatura v2 verificada por `apksigner`.
 - Sem emulador/dispositivo: interface não validada em execução.
 - Push para main confirmado. API GitHub retornou Forbidden ao consultar Actions/Pages e ao criar Release. Publicação externa não confirmada.
+
+## Atualização 0.2.0
+
+Interface nativa roxa/escura, campos mais curtos, filtros avançados recolhíveis e rótulo “Até X reais” (a tolerância continua sendo somada e é explicada no formulário). Cadastros existentes são preservados.
+
+“Verificar agora” faz requisições HTTPS diretamente no aparelho para cada produto ativo em todas as fontes ativas, independentemente da seleção por produto. Reconhecimento automático de nomes para KaBuM!, Pichau, Terabyte, Amazon Brasil e Mercado Livre. Endereços desconhecidos não são consultados. Até três termos por produto, consultas sequenciais com timeouts, sem redirecionamentos automáticos, sem contornar CAPTCHA. Extrai apenas nomes de candidatos Product em JSON-LD e aplica filtros; **preço/estoque não são confirmados**, e resultado vazio não prova ausência de ofertas. Não é integração validada com todas essas lojas nem monitoramento contínuo. Relatório persiste localmente.
+
+Validação 0.2.0: APK compilado, três testes JVM de reconhecimento de fontes e segurança dos endereços passaram. Sem emulador disponível, não foi possível validar visualmente no dispositivo. A política do ambiente segue bloqueando acesso às lojas, portanto os testes JVM não demonstram disponibilidade real das buscas em cada loja.

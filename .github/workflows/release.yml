@@ -26,25 +26,25 @@ jobs:
         with:
           gradle-version: '8.9'
       - run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
-      - run: gradle -p android assembleDebug
+      - run: gradle -p android testDebugUnitTest assembleDebug
       - run: |
-          cp android/app/build/outputs/apk/debug/app-debug.apk radar-0.1.0-test.apk
-          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose radar-0.1.0-test.apk
-          sha256sum radar-0.1.0-test.apk > SHA256SUMS
+          cp android/app/build/outputs/apk/debug/app-debug.apk radar-0.2.0-test.apk
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose radar-0.2.0-test.apk
+          sha256sum radar-0.2.0-test.apk > SHA256SUMS
       - uses: actions/upload-artifact@v4
         with:
           name: radar-test
           path: |
-            radar-0.1.0-test.apk
+            radar-0.2.0-test.apk
             SHA256SUMS
       - if: startsWith(github.ref, 'refs/tags/')
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          test "$GITHUB_REF_NAME" = v0.1.0
-          gh release create "$GITHUB_REF_NAME" radar-0.1.0-test.apk SHA256SUMS --prerelease --title 'Radar 0.1.0 — teste' --notes-file docs/RELEASE.md
+          test "$GITHUB_REF_NAME" = v0.2.0
+          gh release create "$GITHUB_REF_NAME" radar-0.2.0-test.apk SHA256SUMS --prerelease --title 'Radar 0.2.0 — teste' --notes-file docs/RELEASE.md
       - if: startsWith(github.ref, 'refs/tags/')
-        run: python scripts/site_metadata.py radar-0.1.0-test.apk
+        run: python scripts/site_metadata.py radar-0.2.0-test.apk
       - if: startsWith(github.ref, 'refs/tags/')
         uses: actions/upload-pages-artifact@v3
         with:
