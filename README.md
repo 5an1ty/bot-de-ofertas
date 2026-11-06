@@ -32,3 +32,10 @@ Pendências: conectores e busca por nome, cache/backoff, sincronização, oferta
 Workflow `.github/workflows/release.yml` testa e compila em pushes para main. A tag `v0.1.0` publica pré-release com APK **debug**, checksum e Pages. Habilite GitHub Pages com origem GitHub Actions. O site só habilita o download após geração de `release.json` com o APK existente. Versões futuras precisam atualizar versionName, versionCode, workflow e script de metadados juntos.
 
 A chave de debug do runner não é uma identidade de distribuição estável. Assinatura definitiva requer keystore e senhas nos secrets do GitHub, configuração de signingConfig e proteção do workflow. Nenhuma chave é versionada. Sem screenshots fictícios.
+
+## Evidências desta execução
+
+- 10 testes Python passaram, incluindo testes HTTP reais locais.
+- `assembleDebug` concluído localmente; assinatura v2 verificada por `apksigner`.
+- Sem emulador/dispositivo: interface não validada em execução.
+- Push para main confirmado. API GitHub retornou Forbidden ao consultar Actions/Pages e ao criar Release. Publicação externa não confirmada.

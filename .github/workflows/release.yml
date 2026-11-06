@@ -10,14 +10,14 @@ permissions:
   id-token: write
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - run: python -m unittest discover -s backend/tests -v
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
@@ -25,6 +25,7 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
+      - run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
       - run: gradle -p android assembleDebug
       - run: |
           cp android/app/build/outputs/apk/debug/app-debug.apk radar-0.1.0-test.apk
@@ -51,7 +52,7 @@ jobs:
   pages:
     if: startsWith(github.ref, 'refs/tags/')
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment:
       name: github-pages
     steps:
