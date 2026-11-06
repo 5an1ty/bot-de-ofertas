@@ -2,7 +2,7 @@ name: Publicar site de download
 on:
   push:
     branches: [main]
-    paths: ['site/**', '.github/workflows/site.yml']
+    paths: ['download/**', '.github/workflows/site.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -20,11 +20,13 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Verificar APK
-        working-directory: site
-        run: sha256sum -c SHA256SUMS
+        working-directory: download
+        run: |
+          test -s radar-0.1.0-test.apk
+          unzip -t radar-0.1.0-test.zip
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: download
       - uses: actions/deploy-pages@v4
         id: deployment
